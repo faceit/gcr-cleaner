@@ -10,8 +10,13 @@ PACKAGES := $(shell go list ./... | grep -v /vendor/)
 .PHONY: build
 build: ## Build the binary
 	@echo "Building binary"
-	$(GOENV) go build $(LDFLAGS) -a -installsuffix cgo \
-	-o $(APP_NAME) ./cmd/$(APP_NAME)
+	$(GOENV) go build \
+	-a \
+	-trimpath \
+	-ldflags "-s -w -extldflags '-static'" \
+	-tags 'osusergo netgo static_build' \
+	-o $(APP_NAME) \
+	./cmd/$(APP_NAME)
 
 .PHONY: test
 test: ## Run Tests into the packages
