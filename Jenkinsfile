@@ -1,7 +1,8 @@
 @Library('faceit-shared-libs@OPS-933') _
 goModDefaultPipeline(
     mainBranch     : 'main',
-    projectName    : 'gcr-cleaner-cli',
+    projectName    : 'gcr-cleaner',
+    componentName  : 'gcr-cleaner-cli',
     checkAutoEnv   : 'false',
     releaseToStage : 'false',
     kubeNamespace  : '',
